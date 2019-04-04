@@ -1,5 +1,5 @@
 import Vue from "vue"
-// import Element from "element-ui"
+import Cookies from 'js-cookie'
 import VueI18n from 'vue-i18n'
 import elementEnLocale from 'element-ui/lib/locale/lang/en'
 import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'

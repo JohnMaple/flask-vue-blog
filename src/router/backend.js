@@ -1,15 +1,36 @@
 import Layout from '@/views/backend/layout/Layout'
 
-const backend = {
-  path: '/admin',
-  component: Layout,
-  redirect: 'noredirect',
-  name: 'ComponentDemo',
-  meta: {
-    title: 'components',
-    icon: 'component'
+export const backend = [
+  {
+    path: '/admin',
+    component: Layout,
+    redirect: '/admin/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/backend/dashboard/Dashboard'),
+        name: 'Dashboard',
+        meta: { title: 'dashboard', icon: 'dashboard', noCache: true, affix: true }
+      }
+    ]
   },
-  children: []
-};
+  {
+    path: '/admin/login',
+    component: () => import('@/views/backend/login/Login'),
+    hidden: true
+  },
+  // {
+  //   path: '/404',
+  //   component: () => import('@/views/errorPage/404'),
+  //   hidden: true
+  // },
+  // {
+  //   path: '/401',
+  //   component: () => import('@/views/errorPage/401'),
+  //   hidden: true
+  // },
+]
 
-export default backend;
+export const asyncBackend = {
+
+}

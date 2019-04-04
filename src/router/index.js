@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import backend from "./backend";  // 后台路由表
+import { backend } from "./backend";  // 后台路由表
 import frontend from "./frontend";  // 前台路由表
 import Home from "@/views/Home.vue";
 
@@ -25,8 +25,8 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "about" */ "@/views/About.vue")
     },
-    backend,
-    frontend,
+    ...backend,
+    ...frontend,
   ]
 });
 
