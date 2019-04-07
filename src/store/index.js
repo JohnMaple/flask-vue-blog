@@ -1,14 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import app from "./modules/app";
+import admin from "./modules/admin";
+import user from "./modules/user";
 import getters from "./getters";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  state: {},
-  mutations: {},
-  modules: {},
-  actions: {},
+  modules: {
+    app,
+    admin,
+    user
+  },
   getters
 });
 

@@ -79,7 +79,11 @@ export default {
     password: '密码',
     any: '随便填',
     thirdparty: '第三方登录',
-    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！'
+    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！',
+    error: {
+      emptyUsername: '请输入正确的用户名',
+      lessPassword: '密码不能少于6个字符',
+    }
   },
   documentation: {
     documentation: '文档',
