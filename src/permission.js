@@ -19,7 +19,7 @@ router.beforeEach(async (to, from, next) => {
   console.log(to);
   console.log(from);
 
-  const TokenKey = to.meta.admin ? 'Backend-Token' : 'Frontend-Token';
+  const TokenKey = to.meta.admin ? 'Admin-Token' : 'Token';
 
   // console.log(TokenKey);
 
@@ -28,7 +28,7 @@ router.beforeEach(async (to, from, next) => {
 
   console.log(hasToken);
 
-  if (TokenKey === 'Backend-Token'){
+  if (TokenKey === 'Admin-Token') {
     // 后台路由守卫
     if (hasToken) {
       if (to.path === '/admin/login') {
@@ -77,7 +77,7 @@ router.beforeEach(async (to, from, next) => {
   } else {
     // 前台路由守卫
   }
-  
+
 
 });
 

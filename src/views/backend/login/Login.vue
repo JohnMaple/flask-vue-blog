@@ -69,9 +69,6 @@ export default {
       if (value === "") {
         callback(new Error(this.$t("login.error.emptyUsername")));
       } else {
-        // if (value.length < 2 || !validEmail(value)) {
-        //   callback(new Error(this.$t("login.error.errorUsername")));
-        // }
         callback();
       }
     };
@@ -139,7 +136,7 @@ export default {
         if (valid) {
           this.loading = true;
           this.$store
-            .dispatch("admin/login", this.loginForm)
+            .dispatch("login", this.loginForm)
             .then(() => {
               this.$router.push({ path: this.redirect || "/admin" });
               this.loading = false;

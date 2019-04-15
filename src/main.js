@@ -9,7 +9,7 @@ import i18n from "./lang";
 import "./icons"; // 导入全局图标
 import "./permission";
 
-import '@/styles/index.scss' // global css
+import '@/styles/index.scss'; // global css
 
 Vue.config.productionTip = false;
 

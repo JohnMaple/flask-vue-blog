@@ -2,12 +2,10 @@ import { login, logout, getInfo } from '@/api/admin'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
-const tokenType = 'Backend-Token';
-
 const admin = {
   namespace: true,
   state: {
-    token: getToken(tokenType),
+    token: getToken(),
     name: '',
     avatar: '',
     introduction: '',
@@ -35,11 +33,12 @@ const admin = {
   actions: {
     // admin login
     login({ commit }, userInfo) {
-      console.log(userInfo)
-      const { username, password } = userInfo
+      const { username, password, type } = userInfo
       return new Promise((resolve, reject) => {
-        login({ username: username.trim(), password: password }).then(response => {
+        login({ username: username.trim(), password: password, type: type }).then(response => {
           const { data } = response
+          console.log(response);
+          console.log(data); return false;
           commit('SET_TOKEN', data.token)
           setToken(data.token)
           resolve()
@@ -122,6 +121,9 @@ const admin = {
 
         resolve()
       })
+    },
+    testLogin({ commit }, userInfo) {
+      console.log('test login')
     }
   }
 };

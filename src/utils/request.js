@@ -12,16 +12,18 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
+    let tokenType = config.url.indexOf("admin") != -1 ? 'Token' : 'Admin-Token'
+    let token = tokenType == 'Admin-Token' ? store.getters.adminToken : store.getters.token
     // 发送请求之前组装headers
-    if (store.getters.token) {
+    if (token) {
       // 让每个请求携带token--[X-Token] 为自定义key
-      config.headers['X-Token'] = store.getters.token;
-      // config.headers['X-Token'] = getToken()
+      // config.headers['X-Token'] = store.getters.token;
+      config.headers['Authorization'] = 'Bearer ' + getToken(tokenType)
     }
-    if (config.method === 'post') {
-      config.data = config.params;
-      config.params = '';
-    }
+    // if (config.method === 'post') {
+    //   config.data = config.params;
+    //   config.params = '';
+    // }
     return config;
   },
   error => {
