@@ -1,5 +1,5 @@
 import { login, logout, getInfo } from '@/api/admin'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, TokenKey } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
 const admin = {
@@ -14,7 +14,7 @@ const admin = {
 
   mutations: {
     SET_TOKEN: (state, token) => {
-      state.adminToken = token
+      state.token = token
     },
     SET_INTRODUCTION: (state, introduction) => {
       state.introduction = introduction
@@ -37,12 +37,13 @@ const admin = {
       return new Promise((resolve, reject) => {
         login({ username: username.trim(), password: password, type: type }).then(response => {
           const { data } = response
-          console.log(response);
-          console.log(data); return false;
+          // console.log(data.token); return false;
           commit('SET_TOKEN', data.token)
-          setToken(data.token)
+          setToken(TokenKey, data.token)
           resolve()
+
         }).catch(error => {
+          console.log(error.response)
           reject(error)
         })
       })

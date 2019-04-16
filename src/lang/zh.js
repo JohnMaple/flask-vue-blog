@@ -83,7 +83,7 @@ export default {
     error: {
       emptyUsername: '请输入正确的用户名',
       lessPassword: '密码不能少于6个字符',
-      errorUsername: '用户名错误'
+      errorUsername: '用户名错误',
     }
   },
   documentation: {

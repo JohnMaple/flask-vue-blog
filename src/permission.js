@@ -16,26 +16,24 @@ router.beforeEach(async (to, from, next) => {
   // 启动进度条
   NProgress.start();
 
-  console.log(to);
-  console.log(from);
+  console.log(to)
 
-  const TokenKey = to.meta.admin ? 'Admin-Token' : 'Token';
+  const TokenKey = to.meta.admin ? 'Backend-Token' : 'Token';
 
   // console.log(TokenKey);
 
   // determine whether the user has logged in
   const hasToken = getToken(TokenKey);
 
-  console.log(hasToken);
-
-  if (TokenKey === 'Admin-Token') {
+  if (TokenKey === 'Backend-Token') {
     // 后台路由守卫
     if (hasToken) {
       if (to.path === '/admin/login') {
         // 如果已登录，重定向到首页
-        next({ path: '/admin' })
-        NProgress.done()
+        next({ path: '/admin/dashboard' })
       } else {
+        next()
+
         /* // 确定用户是否通过getinfo获取了权限角色
         const hasRoles = store.getters.roles && store.getters.roles.length > 0
         if (hasRoles) {
@@ -64,6 +62,7 @@ router.beforeEach(async (to, from, next) => {
           }
         } */
       }
+      NProgress.done()
     } else {
       /* has no token*/
       if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
@@ -76,6 +75,7 @@ router.beforeEach(async (to, from, next) => {
     }
   } else {
     // 前台路由守卫
+    NProgress.done()
   }
 
 

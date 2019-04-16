@@ -57,9 +57,10 @@
 </template>
 
 <script>
-import { validEmail } from "@/utils/validate";
+// import { validEmail } from "@/utils/validate";
 import LangSelect from "@/components/LangSelect";
 // import SocialSign from './socialsignin'
+import { Message } from "element-ui";
 
 export default {
   name: "Login",
@@ -138,7 +139,12 @@ export default {
           this.$store
             .dispatch("login", this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || "/admin" });
+              Message({
+                message: "登录成功",
+                type: "success",
+                duration: 2 * 1000
+              });
+              this.$router.push({ path: this.redirect || "/admin/dashboard" });
               this.loading = false;
             })
             .catch(() => {
