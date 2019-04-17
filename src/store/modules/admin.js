@@ -41,9 +41,7 @@ const admin = {
           commit('SET_TOKEN', data.token)
           setToken(TokenKey, data.token)
           resolve()
-
         }).catch(error => {
-          console.log(error.response)
           reject(error)
         })
       })
