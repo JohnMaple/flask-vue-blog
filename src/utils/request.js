@@ -13,7 +13,7 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
-    let tokenType = config.url.indexOf("admin") != -1 ? 'Token' : 'Backend-Token'
+    let tokenType = config.url.indexOf("admin") != -1 ? 'Backend-Token' : 'Token'
     let token = tokenType == 'Backend-Token' ? store.getters.adminToken : store.getters.token
     // 发送请求之前组装headers
     if (token) {
@@ -24,6 +24,7 @@ service.interceptors.request.use(
     if (config.method === 'post') {
       config.data = qs.stringify(config.data)
     }
+
     return config;
   },
   error => {

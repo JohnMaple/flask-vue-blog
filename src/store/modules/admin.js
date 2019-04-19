@@ -50,7 +50,7 @@ const admin = {
     // get user info
     getInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.adminToken).then(response => {
+        getInfo(state.token).then(response => {
           const { data } = response
 
           if (!data) {
